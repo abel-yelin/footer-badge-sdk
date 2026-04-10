@@ -13,6 +13,8 @@ export function FooterBadgesMarquee({
   imageClassName,
   pauseOnHover = true,
   durationSeconds,
+  badgeHeightPx = 36,
+  badgeMaxWidthPx = 176,
 }: FooterBadgesMarqueeProps) {
   if (badges.length === 0) {
     return null;
@@ -20,6 +22,10 @@ export function FooterBadgesMarquee({
 
   const marqueeBadges = [...badges, ...badges];
   const resolvedDurationSeconds = durationSeconds ?? Math.max(28, badges.length * 4);
+  const badgeBoxStyle = {
+    height: `${badgeHeightPx}px`,
+    maxWidth: `${badgeMaxWidthPx}px`,
+  } as const;
 
   return (
     <div
@@ -52,13 +58,14 @@ export function FooterBadgesMarquee({
           <a
             key={`${badge.href}-${index}`}
             href={badge.href}
-            target="_blank"
-            rel="noopener noreferrer"
+            target={badge.target ?? '_blank'}
+            rel={badge.rel ?? 'noopener noreferrer'}
             aria-label={badge.alt}
             className={joinClasses(
-              'inline-flex h-[1.6em] shrink-0 items-center leading-none opacity-90 transition-opacity hover:opacity-100',
+              'inline-flex shrink-0 items-center justify-center overflow-hidden leading-none opacity-90 transition-opacity hover:opacity-100',
               itemClassName
             )}
+            style={badgeBoxStyle}
           >
             {badge.src ? (
               <img
@@ -69,16 +76,17 @@ export function FooterBadgesMarquee({
                 loading="lazy"
                 decoding="async"
                 className={joinClasses(
-                  'block h-full w-auto object-contain',
+                  'block max-h-full max-w-full h-auto w-auto object-contain',
                   imageClassName
                 )}
               />
             ) : (
               <span
                 className={joinClasses(
-                  'inline-flex h-full items-center rounded-full border border-current/20 px-2 text-[0.75rem] leading-none underline-offset-4 hover:underline',
+                  'inline-flex max-w-full items-center overflow-hidden text-ellipsis whitespace-nowrap rounded-full border border-current/20 px-2 text-[0.75rem] leading-none underline-offset-4 hover:underline',
                   textClassName
                 )}
+                style={badgeBoxStyle}
               >
                 {badge.label ?? badge.alt}
               </span>

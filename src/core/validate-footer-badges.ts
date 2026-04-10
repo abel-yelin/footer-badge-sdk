@@ -31,5 +31,13 @@ export function isFooterBadge(value: unknown): value is FooterBadge {
     return false;
   }
 
+  if (badge.target !== undefined && typeof badge.target !== 'string') {
+    return false;
+  }
+
+  if (badge.rel !== undefined && typeof badge.rel !== 'string') {
+    return false;
+  }
+
   return true;
 }

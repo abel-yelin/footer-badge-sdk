@@ -5,6 +5,8 @@ export interface FooterBadge {
   width?: number;
   height?: number;
   label?: string;
+  target?: string;
+  rel?: string;
 }
 
 export interface FooterBadgesRemoteConfig {
@@ -35,4 +37,6 @@ export interface FooterBadgesMarqueeProps {
   imageClassName?: string;
   pauseOnHover?: boolean;
   durationSeconds?: number;
+  badgeHeightPx?: number;
+  badgeMaxWidthPx?: number;
 }
