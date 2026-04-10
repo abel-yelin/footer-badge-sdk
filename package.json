@@ -1,6 +1,6 @@
 {
   "name": "@luolink/footer-badges",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "type": "module",
   "license": "UNLICENSED",
@@ -12,6 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/abel-yelin/footer-badges-sdk.git"
   },
+  "homepage": "https://www.stampmaker.io",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
